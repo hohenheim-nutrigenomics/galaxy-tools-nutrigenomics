@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.0">
+  <description>counts all k-mers in a given sequence</description>
+  <macros>
+      <import>macros.xml</import>
+  </macros>
+  <command><![CDATA[jellyfish count -m $m
+    -s $s
+    #if $C and $C != "None" and $C is not None and $C != "":
+        $C
+    #end if
+    #if $L and $L != "None" and $L is not None and $L != "":
+        -L $L
+    #end if
+    #if $U and $U != "None" and $U is not None and $U != "":
+        -U $U
+    #end if
+    -t $t
+    -o $default
+    $in_file]]>
+  </command>
+  <inputs>
+    <param label="Length of mer" help="(-m)" name="m" type="integer" value="21"/>
+    <param label="Initial hash size" help="(-s)" name="s" type="text" value="100M" />
+    <param label="Count both strand, canonical representation" help="(-C)" name="C" type="boolean" checked="false" falsevalue="" truevalue="-C"/>
+    <param label="Number of threads" help="(-t)" name="t" type="integer" value="1"/>
+    <param label="Don't output k-mer with count lower than lower-count" help="(-L)" name="L" type="integer" value=""/>
+    <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" type="integer" value=""/>
+  </inputs>
+  <outputs>
+    <data format_source="in_file" hidden="false" name="default" label="k-mer counts from $in_file.name"/>
+  </outputs>
+  <tests>
+    <test>
+        <param name="in_file" value="jellyfish_count.fasta"/>
+        <param name="m" value="21"/>
+        <param name="s" value="100M"/>
+        <param name="t" value="5"/>
+        <param name="C" value="True"/>
+        <output name="default" file="jellyfish_counts.jf" ftype="jfish"/>
+    </test>
+  </tests>
+  <help><![CDATA[
+**What it does**
+
+Various utilities for transforming FASTA/Q data
+
+@ATTRIBUTION@
+]]></help>
+  <expand macro="citation" />
+</tool>
+
+
