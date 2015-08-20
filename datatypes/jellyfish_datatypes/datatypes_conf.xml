@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<datatypes>
+    <datatype_files>
+        <!-- <datatype_file name="jellyfish.py"/> -->
+    </datatype_files>
+    <registration>
+        <datatype extension="jf_counts" type="galaxy.datatypes.data:Text" subclass="True" display_in_upload="True"/>
+    </registration>
+</datatypes>

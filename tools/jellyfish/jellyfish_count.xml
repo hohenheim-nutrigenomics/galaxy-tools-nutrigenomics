@@ -37,7 +37,7 @@
         <param name="s" value="100M"/>
         <param name="t" value="5"/>
         <param name="C" value="True"/>
-        <output name="default" file="jellyfish_counts.jf" ftype="jfish"/>
+        <output name="default" file="jellyfish_counts.jf" ftype="jf_counts"/>
     </test>
   </tests>
   <help><![CDATA[
