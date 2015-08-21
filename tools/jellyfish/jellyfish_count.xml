@@ -29,7 +29,7 @@
     <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" optional="true" type="integer" value=""/>
   </inputs>
   <outputs>
-    <data format="jfdb" hidden="false" name="default" label="k-mer database from $in_file.name"/>
+    <data format="jf" hidden="false" name="default" label="k-mer database from $in_file.name"/>
   </outputs>
   <tests>
     <test>
@@ -38,7 +38,7 @@
         <param name="s" value="100M"/>
         <param name="t" value="3"/>
         <param name="C" value="True"/>
-        <output name="out_file" file="jellyfish_count.jf" ftype="jfdb"/>
+        <output name="out_file" file="jellyfish_count.jf" ftype="jf"/>
     </test>
   </tests>
   <help><![CDATA[

@@ -6,7 +6,7 @@
   </macros>
   <command><![CDATA[jellyfish query -o $out_file $in_file $s]]></command>
   <inputs>
-    <param label="Input Jellyfish database" format="jf_counts" name="in_file" type="data" />
+    <param label="Input Jellyfish database" format="jf" name="in_file" type="data" />
     <param label="Sequence to search k-mer database for" help="(-s)" name="s" type="text" value="" />
   </inputs>
   <outputs>
