@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<tool id="jellyfish_query" name="jellyfish query" version="@WRAPPER_VERSION@.0">
+  <description>Query a Jellyfish database/counts file</description>
+  <macros>
+      <import>macros.xml</import>
+  </macros>
+  <command><![CDATA[jellyfish query -o $out_file $in_file $s]]></command>
+  <inputs>
+    <param label="Input Jellyfish database" format="jf_counts" name="in_file" type="data" />
+    <param label="Sequence to search k-mer database for" help="(-s)" name="s" type="text" value="" />
+  </inputs>
+  <outputs>
+    <data format="text" hidden="false" name="out_file" label="k-mer counts from $in_file.name"/>
+  </outputs>
+  <tests>
+    <test>
+        <param name="in_file" value="jellyfish_counts.jf"/>
+        <param name="s" value=""/>
+        <output name="out_file" file="jellyfish_query.txt" ftype="text"/>
+    </test>
+  </tests>
+  <help><![CDATA[
+**What it does**
+
+Counts k-mers in fasta or fastq files
+
+
+@ATTRIBUTION@
+]]></help>
+  <expand macro="citation" />
+</tool>
+
+
