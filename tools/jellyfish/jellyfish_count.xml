@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.1">
+<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.2">
   <description>counts all k-mers in a given sequence</description>
   <macros>
       <import>macros.xml</import>
@@ -29,7 +29,7 @@
     <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" type="integer" value=""/>
   </inputs>
   <outputs>
-    <data format_source="in_file" hidden="false" name="default" label="k-mer counts from $in_file.name"/>
+    <data format="jf_counts" hidden="false" name="default" label="k-mer counts from $in_file.name"/>
   </outputs>
   <tests>
     <test>
