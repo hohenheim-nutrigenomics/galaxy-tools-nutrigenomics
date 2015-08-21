@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.2">
+<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.3">
   <description>counts all k-mers in a given sequence</description>
   <macros>
       <import>macros.xml</import>
@@ -16,37 +16,36 @@
         -U $U
     #end if
     -t $t
-    -o $default
+    -o $out_file
     $in_file]]>
   </command>
   <inputs>
-    <param label="Input FASTA file" format="fasta" name="in_file" type="data" />
-    <param label="Length of mer" help="(-m)" name="m" type="integer" value="21"/>
+    <param label="Input FASTA/FASTQ file" format="fasta,fastq" name="in_file" type="data" />
+    <param label="Length of mer" help="(-m)" name="m" type="integer" value="15"/>
     <param label="Initial hash size" help="(-s)" name="s" type="text" value="100M" />
     <param label="Count both strand, canonical representation" help="(-C)" name="C" type="boolean" checked="false" falsevalue="" truevalue="-C"/>
     <param label="Number of threads" help="(-t)" name="t" type="integer" value="1"/>
-    <param label="Don't output k-mer with count lower than lower-count" help="(-L)" name="L" type="integer" value=""/>
-    <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" type="integer" value=""/>
+    <param label="Don't output k-mer with count lower than lower-count" help="(-L)" name="L" optional="true" type="integer" value=""/>
+    <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" optional="true" type="integer" value=""/>
   </inputs>
   <outputs>
-    <data format="jf_counts" hidden="false" name="default" label="k-mer counts from $in_file.name"/>
+    <data format="jfdb" hidden="false" name="default" label="k-mer database from $in_file.name"/>
   </outputs>
   <tests>
     <test>
         <param name="in_file" value="jellyfish_count.fasta"/>
-        <param name="m" value="21"/>
+        <param name="m" value="15"/>
         <param name="s" value="100M"/>
-        <param name="t" value="5"/>
+        <param name="t" value="3"/>
         <param name="C" value="True"/>
-        <output name="default" file="jellyfish_counts.jf" ftype="jf_counts"/>
+        <output name="out_file" file="jellyfish_count.jf" ftype="jfdb"/>
     </test>
   </tests>
   <help><![CDATA[
 **What it does**
 
-Various utilities for transforming FASTA/Q data
+Counts k-mers in a FASTA or FASTQ files
 
-@ATTRIBUTION@
 ]]></help>
   <expand macro="citation" />
 </tool>
