@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.4">
+<tool id="jellyfish_count" name="jellyfish count" version="@WRAPPER_VERSION@.5">
   <description>counts all k-mers in a given sequence</description>
   <macros>
       <import>macros.xml</import>
@@ -16,8 +16,9 @@
         -U $U
     #end if
     -t $t
+    -o $counts_out
     $in_file && 
-    jellyfish dump mer_counts.jf
+    jellyfish dump $counts_out
     #if $L and $L != "None" and $L is not None and $L != "":
         -L $L
     #end if
@@ -37,7 +38,7 @@
   </inputs>
   <outputs>
     <data format="text" hidden="false" name="out_file" label="k-mer counts from $in_file.name"/>
-    <data format="jf" hidden="true" name="default" label="k-mer database from $in_file.name"/>
+    <data format="jf" hidden="true" name="counts_out" label="k-mer database from $in_file.name"/>
   </outputs>
   <tests>
     <test>
