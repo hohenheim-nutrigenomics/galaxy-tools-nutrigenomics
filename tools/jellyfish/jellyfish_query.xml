@@ -6,14 +6,14 @@
   </macros>
   <command><![CDATA[jellyfish query -o $out_file 
     $in_file 
-    #for $i, $s in enumerate( $query_sequence )
-      $s 
+    #for $seq in $query_seqs:
+      $seq.query_seq
     #end for]]>
   </command>
   <inputs>
     <param label="Input Jellyfish database" format="jf" name="in_file" type="data" />
-    <repeat name="query_sequence" title="Query Sequence" min="1" help="You can provide multiple query sequences">
-      <param label="Sequence to search k-mer database for" help="(-s)" name="s" type="text" value="" />
+    <repeat name="query_seqs" title="Query Sequences" min="1" help="You can provide multiple query sequences">
+      <param label="Sequence to search k-mer database for" help="(-s)" name="query_seq" type="text" value="" />
     </repeat>
   </inputs>
   <outputs>
@@ -22,7 +22,7 @@
   <tests>
     <test>
         <param name="in_file" value="jellyfish_counts.jf"/>
-        <param name="s" value="AAAAAAAAAAAAAAA"/>
+        <param name="query_seq" value="AAAAAAAAAAAAAAA"/>
         <output name="out_file" file="jellyfish_query.txt" ftype="text"/>
     </test>
   </tests>
