@@ -16,8 +16,15 @@
         -U $U
     #end if
     -t $t
-    -o $out_file
-    $in_file]]>
+    $in_file && 
+    jellyfish dump mer_counts.jf
+    #if $L and $L != "None" and $L is not None and $L != "":
+        -L $L
+    #end if
+    #if $U and $U != "None" and $U is not None and $U != "":
+        -U $U
+    #end if
+    -o $out_file]]>
   </command>
   <inputs>
     <param label="Input FASTA/FASTQ file" format="fasta,fastq" name="in_file" type="data" />
@@ -29,7 +36,8 @@
     <param label="Don't output k-mer with count greater than higher-count" help="(-U)" name="U" optional="true" type="integer" value=""/>
   </inputs>
   <outputs>
-    <data format="jf" hidden="false" name="default" label="k-mer database from $in_file.name"/>
+    <data format="text" hidden="false" name="out_file" label="k-mer counts from $in_file.name"/>
+    <data format="jf" hidden="true" name="default" label="k-mer database from $in_file.name"/>
   </outputs>
   <tests>
     <test>
@@ -38,13 +46,13 @@
         <param name="s" value="100M"/>
         <param name="t" value="3"/>
         <param name="C" value="True"/>
-        <output name="out_file" file="jellyfish_count.jf" ftype="jf"/>
+        <output name="out_file" file="jellyfish_count.txt" ftype="text"/>
     </test>
   </tests>
   <help><![CDATA[
 **What it does**
 
-Counts k-mers in a FASTA or FASTQ files
+Counts k-mers in a FASTA or FASTQ files. This tool runs both the jellyfish count and dump commands.
 
 ]]></help>
   <expand macro="citation" />

@@ -7,7 +7,9 @@
   <command><![CDATA[jellyfish query -o $out_file $in_file $s]]></command>
   <inputs>
     <param label="Input Jellyfish database" format="jf" name="in_file" type="data" />
-    <param label="Sequence to search k-mer database for" help="(-s)" name="s" type="text" value="" />
+    <repeat name="query_sequence" title="Query Sequence" min="1" help="You can provide multiple query sequences">
+      <param label="Sequence to search k-mer database for" help="(-s)" name="s" type="text" value="" />
+    </repeat>
   </inputs>
   <outputs>
     <data format="text" hidden="false" name="out_file" label="k-mer counts from $in_file.name"/>
@@ -22,8 +24,7 @@
   <help><![CDATA[
 **What it does**
 
-Counts k-mers in fasta or fastq files
-
+Query a Jellyfish database.
 
 @ATTRIBUTION@
 ]]></help>
