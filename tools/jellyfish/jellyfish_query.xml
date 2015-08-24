@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
-<tool id="jellyfish_query" name="jellyfish query" version="@WRAPPER_VERSION@.1">
+<tool id="jellyfish_query" name="jellyfish query" version="@WRAPPER_VERSION@.2">
   <description>Query a Jellyfish database/counts file</description>
   <macros>
       <import>macros.xml</import>
   </macros>
-  <command><![CDATA[jellyfish query -o $out_file $in_file $s]]></command>
+  <command><![CDATA[jellyfish query -o $out_file 
+    $in_file 
+    #for $i, $s in enumerate( $query_sequence )
+      $s 
+    #end for]]>
+  </command>
   <inputs>
     <param label="Input Jellyfish database" format="jf" name="in_file" type="data" />
     <repeat name="query_sequence" title="Query Sequence" min="1" help="You can provide multiple query sequences">
@@ -17,7 +22,7 @@
   <tests>
     <test>
         <param name="in_file" value="jellyfish_counts.jf"/>
-        <param name="s" value=""/>
+        <param name="s" value="AAAAAAAAAAAAAAA"/>
         <output name="out_file" file="jellyfish_query.txt" ftype="text"/>
     </test>
   </tests>
